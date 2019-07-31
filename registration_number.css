@@ -1,6 +1,5 @@
-.rcorner {
+li {
     border-radius: 25px;
     background-color: silver;
     border-style: solid;
-    width: 15;
 }
