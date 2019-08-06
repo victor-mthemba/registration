@@ -8,6 +8,7 @@ function registration() {
     {
         var theNumber = number.toUpperCase();
         
+        
         if(!regNumberList.includes(theNumber))
         {
            regNumberList.push(theNumber);
@@ -20,7 +21,7 @@ function registration() {
 
         
     }
-    // get
+    
     function getErrorMessage()
     {
         return errorMessage;
@@ -32,7 +33,7 @@ function registration() {
     }
 
 
-    function myfilter() 
+    function myfilter(myNumber) 
     {
         //create an empty list and
         var regNumber = [];
@@ -40,18 +41,11 @@ function registration() {
         //loop over regNumberList.
         for(var i = 0; i < regNumberList.length; i++)
         {
+            const currentRegNumber = regNumberList[i];
             //check if reg number starts with the appropreiate string.
-            if(regNumberList[i].startsWith("CA"))
+            if(currentRegNumber.startsWith(myNumber))
             {
-                regNumber.push(regNumberList[i]);
-            }
-            else if(regNumberList[i].startsWith("CJ"))
-            {
-                regNumber.push(regNumberList[i]);
-            }
-            else if(regNumberList[i].startsWith("CL"))
-            {
-                regNumber.push(regNumberList[i]);
+                regNumber.push(currentRegNumber);
             }
         }
         return regNumber;

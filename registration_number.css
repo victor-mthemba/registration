@@ -1,5 +1,8 @@
-li {
+.li {
     border-radius: 25px;
     background-color: silver;
     border-style: solid;
+    padding: 5px;
+    float: left;
+    margin: 5px;
 }

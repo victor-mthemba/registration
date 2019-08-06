@@ -12,26 +12,27 @@
     <div class="container">
         <div class="row">
             <div class="col-12 center">
-                <strong>Registration Number:</strong><br>
-                <input class="inputNum"type="text" name="RegistrationNumber" value="">
+                <strong>Registration Number:</strong><br><br>
+                <div class="row error">
+                
+                </div><br>
+                <input class="inputNum"type="text" name="RegistrationNumber" maxlength="7" value="">
                 <button class="addBtn">Add</button>
                 <form action="">
                     <input type="radio" name="radioType" class="town" value="CA"> Cape Town
                     <input type="radio" name="radioType" class="town" value="CJ"> Paarl
                     <input type="radio" name="radioType" class="town" value="CL"> Stellenbosch
-                    <input type="radio" name="radioType" class="town" value=""> All
+                    <input type="radio" name="radioType" class="town" value="">  Show All
                 </form>
                 <br>
                 <button class="showBtn">Show</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-3 center">
-                    <ul class="myList" style="list-style-type:none;">
-                        <br>
-                    </ul>  
-            </div>
-        </div>
+            <div class="col-4 center"></div>
+            <div class="col-4 center myList"></div>
+            <div class="col-4 center"></div>
+       
     </div>
 
     <script src="registration_number.js" charset="utf-8"></script>
