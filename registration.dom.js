@@ -44,6 +44,8 @@ function addedList(){
         return;
     }
 
+    
+
     if (instance.addRegNumber(inputReg.value))
     {
         var newListItem = document.createElement('div');
@@ -53,6 +55,15 @@ function addedList(){
     
         localStorage['Numbers'] = JSON.stringify(instance.getRegNumberList());
     }
+
+    var checkReg = instance.addRegNumber(inputReg.value);
+
+    if(checkReg === false) {
+        errorMessage.innerHTML = "Number already exist!";
+        clearError();
+        return;
+    }
+
 
 
 }
