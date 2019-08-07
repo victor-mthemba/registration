@@ -30,7 +30,7 @@ function addedList(){
 
     if(inputReg.value === "")
     {
-        errorMessage.innerHTML = "Enter a registration number or select a town";
+        errorMessage.innerHTML = "Enter a registration number!";
         clearError();
         return;
     }
@@ -55,14 +55,15 @@ function addedList(){
     
         localStorage['Numbers'] = JSON.stringify(instance.getRegNumberList());
     }
-
-    var checkReg = instance.addRegNumber(inputReg.value);
-
-    if(checkReg === false) {
+    else if(!instance.addRegNumber(inputReg.value))
+    {
         errorMessage.innerHTML = "Number already exist!";
         clearError();
         return;
     }
+
+        
+    
 
 
 
@@ -72,12 +73,20 @@ addBtn.addEventListener('click', addedList);
 
 function show() {
 
+
     var theTown;
 
     for (var i = 0; i < radioType.length; i++) {
         if (radioType[i].checked) {
             theTown = radioType[i].value;
         }
+    }
+
+    if(theTown === undefined)
+    {
+        errorMessage.innerHTML = "Select a town!";
+        clearError();
+        return;
     }
     
     var regiNumbers = instance.myfilter(theTown)
