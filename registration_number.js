@@ -1,50 +1,55 @@
-function registration() {
+function Registration(numberList) {
 
-    var regNumberList = [];
-    var errorMessage = "add valid registration number";
+    var regNumberList =  numberList || [];
+    var errorMessage = "";
   
-   // add registration number to a list if it is not there 
     function addRegNumber(number)
     {
+        errorMessage = "";
+
         var theNumber = number.toUpperCase();
+
+        if(theNumber === "") {
+            errorMessage = "Enter a registration number!";
+            return false;
+        }
+
+        var regex = /[A-Z]{2}\s[0-9]{3,5}$/gm;
+        var theRegNumber = regex.test(theNumber);
+
+        if(!theRegNumber) {
+            errorMessage = "Input is invalid!";
+            return false;
+        }
         
-        
-        if(!regNumberList.includes(theNumber))
-        {
+        if(!regNumberList.includes(theNumber)) {
            regNumberList.push(theNumber);
            return true;
         } 
-        else 
-        {
+        else {
+            errorMessage = "Number already exist!";
             return false;
         } 
-
-        
+ 
     }
     
-    function getErrorMessage()
-    {
+    function getErrorMessage() {
         return errorMessage;
     }
 
-    function getRegNumberList()
-    {
+    function getRegNumberList() {
         return regNumberList;
     }
 
-
-    function myfilter(myNumber) 
-    {
-        //create an empty list and
+    function myfilter(myNumber) {
+    
         var regNumber = [];
     
-        //loop over regNumberList.
-        for(var i = 0; i < regNumberList.length; i++)
-        {
+        for(var i = 0; i < regNumberList.length; i++) {
+
             const currentRegNumber = regNumberList[i];
-            //check if reg number starts with the appropreiate string.
-            if(currentRegNumber.startsWith(myNumber))
-            {
+    
+            if(currentRegNumber.startsWith(myNumber)) {
                 regNumber.push(currentRegNumber);
             }
         }
@@ -53,7 +58,7 @@ function registration() {
     }
 
     return {
-        
+
         addRegNumber,
         getRegNumberList,
         myfilter,

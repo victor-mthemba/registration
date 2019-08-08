@@ -2,70 +2,48 @@ var inputReg = document.querySelector(".inputNum");
 var addBtn = document.querySelector(".addBtn");
 var myList = document.querySelector(".myList");
 var radioType = document.querySelectorAll(".town");
-var errorMessage = document.querySelector(".error");
+var errorMessages = document.querySelector(".error");
 var showBtn = document.querySelector(".showBtn");
 
 
 function clearError() {
 	setTimeout(function(){
-		errorMessage.innerHTML = "";
-	}, 2000);
+		errorMessages.innerHTML = "";
+	}, 5000);
 }
 
-var instance = registration();
+function addRegNumberElement(theNumbers) {
+    var newListItem = document.createElement('div');
+        newListItem.classList.add('li')    
+        newListItem.textContent = theNumbers.toUpperCase();
+        myList.appendChild(newListItem);
+}
+
+var keepRegNumb = []
 
 if (localStorage['Numbers'] !== undefined)
 {
-    var keepRegNumb = JSON.parse(localStorage['Numbers']);
+    keepRegNumb = JSON.parse(localStorage['Numbers']);
 }
-else
-{
-    keepRegNumb = [];
-}
-var instance = registration(keepRegNumb);
 
+var instance = Registration(keepRegNumb);
 
+var currentRegNumbers = instance.getRegNumberList();
+
+for(var i = 0; i < currentRegNumbers.length; i++) {
+    addRegNumberElement(currentRegNumbers[i].toUpperCase());
+ }
 
 function addedList(){
-
-    if(inputReg.value === "")
-    {
-        errorMessage.innerHTML = "Enter a registration number!";
-        clearError();
-        return;
-    }
-
-    var regex = /[A-Z]{2}\s[0-9]{4}/g;
-    var theRegNumber = regex.test(inputReg.value)
-
-    if (!theRegNumber) {
-        errorMessage.innerHTML = "Input is invalid!";
-        clearError();
-        return;
-    }
-
     
-
     if (instance.addRegNumber(inputReg.value))
     {
-        var newListItem = document.createElement('div');
-        newListItem.classList.add('li')    
-        newListItem.textContent = inputReg.value.toUpperCase();
-        myList.appendChild(newListItem);
-    
+        addRegNumberElement(inputReg.value.toUpperCase()) ;
         localStorage['Numbers'] = JSON.stringify(instance.getRegNumberList());
     }
-    else if(!instance.addRegNumber(inputReg.value))
-    {
-        errorMessage.innerHTML = "Number already exist!";
-        clearError();
-        return;
-    }
 
-        
-    
-
-
+    errorMessages.innerHTML = instance.getErrorMessage();
+    clearError();
 
 }
 addBtn.addEventListener('click', addedList);
@@ -73,33 +51,30 @@ addBtn.addEventListener('click', addedList);
 
 function show() {
 
+    var theTown = document.querySelector("input[type='radio']:checked");
 
-    var theTown;
-
-    for (var i = 0; i < radioType.length; i++) {
-        if (radioType[i].checked) {
-            theTown = radioType[i].value;
-        }
-    }
-
-    if(theTown === undefined)
-    {
-        errorMessage.innerHTML = "Select a town!";
+    if(!theTown) {
+        errorMessages.innerHTML = "Select a town!";
         clearError();
         return;
     }
     
-    var regiNumbers = instance.myfilter(theTown)
+    var regiNumbers = instance.myfilter(theTown.value);
     myList.innerHTML = "";
 
-    for(var i = 0; i < regiNumbers.length; i++)
-    {
-         var newListItem = document.createElement('div');
-         newListItem.classList.add('li')    
-         newListItem.textContent = regiNumbers[i].toUpperCase();
-         myList.appendChild(newListItem);
+    for(var i = 0; i < regiNumbers.length; i++) {
+       addRegNumberElement(regiNumbers[i].toUpperCase());
     }
 
 }
 showBtn.addEventListener('click', show);
+
+// window.onload = function () {
+
+//     var newListItem = document.createElement('div');
+//         newListItem.classList.add('li')    
+//         newListItem.textContent = inputReg.value.toUpperCase();
+//         myList.appendChild(newListItem);
+// };
+
 
