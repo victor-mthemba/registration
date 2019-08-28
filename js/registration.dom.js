@@ -36,8 +36,7 @@ for(var i = 0; i < currentRegNumbers.length; i++) {
 
 function addedList(){
     
-    if (instance.addRegNumber(inputReg.value))
-    {
+    if (instance.addRegNumber(inputReg.value)) {
         addRegNumberElement(inputReg.value.toUpperCase()) ;
         localStorage['Numbers'] = JSON.stringify(instance.getRegNumberList());
     }
@@ -67,14 +66,8 @@ function show() {
     }
 
 }
+
+
+
 showBtn.addEventListener('click', show);
-
-// window.onload = function () {
-
-//     var newListItem = document.createElement('div');
-//         newListItem.classList.add('li')    
-//         newListItem.textContent = inputReg.value.toUpperCase();
-//         myList.appendChild(newListItem);
-// };
-
 

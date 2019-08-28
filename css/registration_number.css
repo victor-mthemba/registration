@@ -1,5 +1,5 @@
 .li {
-    border-radius: 25px;
+    border-radius: 70px;
     background-color: silver;
     border-style: solid;
     padding: 5px;
@@ -7,6 +7,6 @@
     margin: 5px;
 }
 
-.error {
+.error, .errorTwo {
     color: red;
 }

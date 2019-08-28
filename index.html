@@ -4,40 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="simple-grid.css">
-    <link rel="stylesheet" href="registration_number.css">
+    <link rel="stylesheet" href="./css/simple-grid.css">
+    <link rel="stylesheet" href="./css/registration_number.css">
     <title>Registration Number</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 </head>
+<script type="text/template-x" class="RegTemplates" >
+    {{#each plate}}
+    <div class="li">{{this}}</div>
+    {{/each}}
+  </script>
 <body style="background-color:powderblue;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 center">
-                <strong>Registration Number:</strong><br>
-                <div class="row error">
-                
-                </div><br>
-                <input class="inputNum"type="text" name="RegistrationNumber" maxlength="7" value="">
-                <button class="addBtn">Add</button>
-                <form action="">
-                    <input type="radio" name="radioType" class="town" value="CA" > Cape Town
-                    <input type="radio" name="radioType" class="town" value="CJ" > Paarl
-                    <input type="radio" name="radioType" class="town" value="CL" > Stellenbosch
-                    <input type="radio" name="radioType" class="town" value=""  >  Show All
-                </form>
-                <p><strong>i.e CA 1234</strong></p>
-                <button class="showBtn">Show</button>
+    <div class="col-6">
+            <div class="container">
+                    <div class="row">
+                        <div class="col-12 center">
+                            <strong>Registration Number:</strong><br>
+                            <div class="row error">
+                            
+                            </div><br>
+                            <input class="inputNum"type="text" name="RegistrationNumber" maxlength="7" value="">
+                            <button class="addBtn">Add</button>
+                            <form action="">
+                                <input type="radio" name="radioType" class="town" value="CA" > Cape Town
+                                <input type="radio" name="radioType" class="town" value="CJ" > Paarl
+                                <input type="radio" name="radioType" class="town" value="CL" > Stellenbosch
+                                <input type="radio" name="radioType" class="town" value=""  >  Show All
+                            </form>
+                            <p><strong>i.e CA 1234</strong></p>
+                            <button class="showBtn">Show</button>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 center"></div>
+                        <div class="col-4 center myList"></div>
+                        <div class="col-4 center"></div>
+                    </div>  
             </div>
-        </div>
-        <div class="row">
-            <div class="col-4 center"></div>
-            <div class="col-4 center myList"></div>
-            <div class="col-4 center"></div>
-       
     </div>
 
-    <script src="registration_number.js" charset="utf-8"></script>
-    <script src="registration.dom.js" charset="utf-8"></script>
-    
 
+    <div class="col-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 center">
+                    <strong>Registration Number Template:</strong><br>
+                    <div class="row errorTwo">
+                    
+                    </div><br>
+                    <input class="inputNumTwo"type="text" name="RegistrationNumber" maxlength="7" value="">
+                    <button class="addBtnTwo">Add</button>
+                    <form action="">
+                        <input type="radio" name="radioType" class="townTwo" value="CA" > Cape Town
+                        <input type="radio" name="radioType" class="townTwo" value="CJ" > Paarl
+                        <input type="radio" name="radioType" class="townTwo" value="CL" > Stellenbosch
+                        <input type="radio" name="radioType" class="townTwo" value=""  >  Show All
+                    </form>
+                    <p><strong>i.e CA 1234</strong></p>
+                    <button class="showBtnTwo">Show</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 center"></div>
+                <div class="col-4 center myRegNumber"></div>
+                <div class="col-4 center"></div>
+            </div>  
+        </div>
+    </div>
+
+    <script src="./js/registration_number.js" charset="utf-8"></script>
+    <script src="./js/registationTemplate.dom.js" charset="utf-8"></script>
+    <script src="./js/registration.dom.js" charset="utf-8"></script>
+    
 </body>
 </html>
