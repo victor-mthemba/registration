@@ -4,6 +4,7 @@ var radioTypeTwo = document.querySelectorAll(".townTwo");
 var errorMessagesTwo = document.querySelector(".errorTwo");
 var showBtnTwo = document.querySelector(".showBtnTwo");
 var theRegNumbers = document.querySelector(".myRegNumber");
+var resetbuttonTwo = document.querySelector(".resetBtnTwo");
 
 
 var instanceTwo = Registration();
@@ -13,10 +14,10 @@ var templateDataTwo = document.querySelector(".RegTemplates").innerHTML;
 var compileTemplate = Handlebars.compile(templateDataTwo);
 
 
-function clearError() {
+function clearErrorTwo() {
 	setTimeout(function(){
 		errorMessagesTwo.innerHTML = "";
-	}, 5000);
+	}, 4500);
 }
 
 
@@ -36,18 +37,18 @@ if (localStorage['NumbersTwo'] !== undefined)
 
 var instanceTwo = Registration(keepRegNumbTwo);
 
-var currentRegNumbersTwo = instanceTwo.getRegNumberList();
+// var currentRegNumbersTwo = instanceTwo.getRegNumberList();
 
-for(var i = 0; i < currentRegNumbersTwo.length; i++) {
-    addRegNumberElement(currentRegNumbersTwo[i].toUpperCase());
- }
+// for(var i = 0; i < currentRegNumbersTwo.length; i++) {
+//     addRegNumberElement(currentRegNumbersTwo[i].toUpperCase());
+//  }
 
 function addedListTwo(){
 
 
     instanceTwo.addRegNumber(inputRegTwo.value); 
     //addRegNumberElement(inputRegTwo.value.toUpperCase()) ;
-    localStorage['Numbers'] = JSON.stringify(instanceTwo.getRegNumberList());
+    localStorage['NumbersTwo'] = JSON.stringify(instanceTwo.getRegNumberList());
 
      var templateDataTwo = {
          plate: instanceTwo.getRegNumberList(),
@@ -58,7 +59,7 @@ function addedListTwo(){
 
 
     errorMessagesTwo.innerHTML = instanceTwo.getErrorMessage();
-    clearError();
+    clearErrorTwo();
 
 }
 addBtnTwo.addEventListener('click', addedListTwo);
@@ -66,22 +67,30 @@ addBtnTwo.addEventListener('click', addedListTwo);
 
 function showTwo(){
 
-    //var radioTypeTwo = document.querySelector("input[type='radio']:checked");
+    var radioTypeTwo = document.querySelector("input[type='radio']:checked");
 
     if(!radioTypeTwo) {
         errorMessagesTwo.innerHTML = "Select a town!";
-        clearError();
+        clearErrorTwo();
         return;
     }
     
 
      var templateDataTwo = {
-         plate: instanceTwo.getRegNumberList(),
+         plate: instanceTwo.myfilter(radioTypeTwo.value),
      };
 
      var regElementData = compileTemplate(templateDataTwo);
      theRegNumbers.innerHTML = regElementData;
+     console.log(regElementData);
+     
 
 
 }
 showBtnTwo.addEventListener('click', showTwo);
+
+resetbuttonTwo.addEventListener('click', function () {
+    localStorage.removeItem("NumbersTwo");
+    instanceTwo.clearStore();
+    theRegNumbers.innerHTML = "";
+});

@@ -4,6 +4,7 @@ var myList = document.querySelector(".myList");
 var radioType = document.querySelectorAll(".town");
 var errorMessages = document.querySelector(".error");
 var showBtn = document.querySelector(".showBtn");
+var resetbuttonOne = document.querySelector(".resetBtnOne");
 
 
 function clearError() {
@@ -67,7 +68,11 @@ function show() {
 
 }
 
-
-
 showBtn.addEventListener('click', show);
+
+resetbuttonOne.addEventListener('click', function () {
+    localStorage.removeItem("Numbers");
+    instance.clearStore();
+    myList.innerHTML = "";
+});
 
