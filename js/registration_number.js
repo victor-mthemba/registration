@@ -16,8 +16,8 @@ function Registration(numberList) {
             return false;
         }
 
-        var regex = /[A-Z]{2}\s[0-9]{3,5}$/gm;
-        var regex2 = /([A-Z]){2}\s+([0-9]){3}\s([0-9]){3}/g;
+        var regex = /([A-Z]){2}\s+([0-9]){3}\S([0-9]){3}$/g
+        var regex2 = /([A-Z]){2}\s+([0-9]){3}\s([0-9]){3}$/g;
 
         var theRegNumber = regex.test(theNumber);
         var theRegNumber2 = regex2.test(theNumber)

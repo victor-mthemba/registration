@@ -14,7 +14,7 @@ function clearError() {
 }
 
 function addRegNumberElement(theNumbers) {
-    var newListItem = document.createElement('div');
+    var newListItem = document.createElement('li');
         newListItem.classList.add('li')    
         newListItem.textContent = theNumbers.toUpperCase();
         myList.appendChild(newListItem);
