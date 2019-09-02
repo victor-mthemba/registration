@@ -82,7 +82,6 @@ function showTwo(){
 
      var regElementData = compileTemplate(templateDataTwo);
      theRegNumbers.innerHTML = regElementData;
-     console.log(regElementData);
      
 
 
@@ -94,3 +93,12 @@ resetbuttonTwo.addEventListener('click', function () {
     instanceTwo.clearStore();
     theRegNumbers.innerHTML = "";
 });
+
+window.onload = function () {
+    var templateDataTwo = {
+        plate: instanceTwo.getRegNumberList(),
+    };
+
+    var regElementData = compileTemplate(templateDataTwo);
+    theRegNumbers.innerHTML = regElementData;
+};
